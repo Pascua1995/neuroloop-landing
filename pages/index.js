@@ -1,13 +1,4 @@
-import { useState } from "react";
-
 export default function Home() {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = () => {
-    setSubmitted(true);
-  };
-
   return (
     <div style={{ minHeight: "100vh", background: "black", color: "white", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 20 }}>
       <div style={{ maxWidth: 600, textAlign: "center" }}>
@@ -22,17 +13,20 @@ export default function Home() {
         </ul>
         <p><em>Vas a hablar conmigo (Simón) como si fuera tu coach, tu socio y tu mejor asistente.</em></p>
       </div>
-      {!submitted ? (
-        <div style={{ background: "white", color: "black", padding: 20, marginTop: 20, borderRadius: 8 }}>
-          <h2>Sumate a la lista de espera y recibí tu primer plan de acción gratuito</h2>
-          <input type="email" placeholder="Tu mail" value={email} onChange={(e) => setEmail(e.target.value)} style={{ padding: 10, width: "100%", marginBottom: 10 }} />
-          <button onClick={handleSubmit} style={{ padding: 10, width: "100%", background: "black", color: "white", border: "none", cursor: "pointer" }}>
-            Quiero mi plan de acción
-          </button>
-        </div>
-      ) : (
-        <p style={{ color: "lightgreen", marginTop: 20 }}>¡Gracias! En breve recibirás tu plan de acción inicial ✨</p>
-      )}
+
+      <form action="https://formspree.io/f/xpwdrear" method="POST" style={{ background: "white", color: "black", padding: 20, marginTop: 20, borderRadius: 8 }}>
+        <h2>Sumate a la lista de espera y recibí tu primer plan de acción gratuito</h2>
+        <input
+          type="email"
+          name="email"
+          placeholder="Tu mail"
+          required
+          style={{ padding: 10, width: "100%", marginBottom: 10 }}
+        />
+        <button type="submit" style={{ padding: 10, width: "100%", background: "black", color: "white", border: "none", cursor: "pointer" }}>
+          Quiero mi plan de acción
+        </button>
+      </form>
     </div>
   );
 }
